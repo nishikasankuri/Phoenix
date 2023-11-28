@@ -13,7 +13,6 @@ import matplotlib.pyplot as plt
 import cv2
 
 
-
 @csrf_exempt
 @require_POST
 def upload_image(request):
@@ -23,7 +22,7 @@ def upload_image(request):
         cnn = tf.keras.models.load_model("assets/trained_model3.h5")
 
         test_set = tf.keras.utils.image_dataset_from_directory(
-            'assets/data/test',
+            'assets/data/data1/test',
             labels="inferred",
             label_mode="categorical",
             class_names=None,

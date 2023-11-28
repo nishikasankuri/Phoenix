@@ -24,8 +24,11 @@ SECRET_KEY = 'django-insecure-8$&zl!th$6c5+v(^7ms6o_i^9jht+^#vt&c@rb7po7#gicqpyx
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+if DEBUG:
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
-    'imageApi'
+    'imageApi',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -131,12 +135,8 @@ OPENAI_API_KEY = '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'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200",
 ]
-DEBUG = True
-if DEBUG:
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-ALLOWED_HOSTS = ['*']
+
 CORS_ORIGIN_ALLOW_ALL = True
 
 
