@@ -22,6 +22,7 @@ from SmartPlantDetection.views import welcome
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/welcome/', welcome, name='welcome'),
+
 ]
 
 
