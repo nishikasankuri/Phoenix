@@ -22,13 +22,13 @@ def chat_with_gpt3(request):
 
 def generate_openai_response(user_input):
     # Set your OpenAI API key
-    openai.api_key = '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'
+    openai.api_key = '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'
 
     # Make a request to the OpenAI API
     response = openai.Completion.create(
         engine="text-davinci-003",  # Choose the appropriate engine
         prompt="Explain not more than 70 words about the plant " + " " + user_input + " " + " and name their nomenclature ",
-        max_tokens=50  # Adjust based on your needs
+        max_tokens=100 # Adjust based on your needs
     )
 
     return response['choices'][0]['text']
