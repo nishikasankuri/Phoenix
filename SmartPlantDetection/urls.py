@@ -24,7 +24,8 @@ urlpatterns = [
     path('api/welcome/', welcome, name='welcome'),
     path('imageApi/', include('imageApi.urls')),
     path('chat/', include('chat.urls')),
-    path('readText/', include('readtext.urls'))
+    path('readText/', include('readtext.urls')),
+    path('translate/', include('translate.urls'))
 ]
 
 

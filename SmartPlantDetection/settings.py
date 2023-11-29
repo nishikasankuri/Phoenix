@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'readtext',
     'rest_framework',
     'corsheaders',
+    'translate'
 
 
 ]
