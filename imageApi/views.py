@@ -11,6 +11,8 @@ import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
 import cv2
+import logging
+logger = logging.getLogger(__name__)
 
 
 @csrf_exempt
@@ -50,6 +52,17 @@ def upload_image(request):
         result_index = np.where(predictions[0] == max(predictions[0]))
         result_name = (" {} ".format(test_set.class_names[result_index[0][0]]))
 
-        return JsonResponse({'status': 'success', 'image_url': result_name})
-    else:
-        return JsonResponse({'status': 'error', 'errors': form.errors})
+        if result_index and result_index[0]:
+            index_0 = result_index[0][0] if result_index[0] else None
+            if index_0 is not None and 0 <= index_0 < len(test_set.class_names):
+                result_name = " {}".format(test_set.class_names[index_0])
+                logger.info("Result name: {}".format(result_name))
+                return JsonResponse({'status': 'success', 'image_url': result_name})
+            else:
+                logger.error("Invalid index or result_index structure")
+                return JsonResponse({'status': 'success', 'image_url': result_name})
+        else:
+            logger.error("Invalid result_index structure")
+
+
+
