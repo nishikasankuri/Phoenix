@@ -21,7 +21,7 @@ if DEBUG:
 ALLOWED_HOSTS = ['*']
 
 CORS_ALLOWED_ORIGINS = [
-    "18.188.242.101",
+    "http://18.188.242.101",
 ]
 
 
