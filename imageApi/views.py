@@ -52,8 +52,13 @@ def upload_image(request):
 
         # Identify the predicted class name
         result_index = np.argmax(predictions[0])
-        result_name = test_set.class_names[result_index]
 
-        return JsonResponse({'status': 'success', 'image_url': result_name})
+        if 0 <= result_index < len(test_set.class_names):
+            result_name = test_set.class_names[result_index]
+            return JsonResponse({'status': 'success', 'image_url': result_name})
+        else:
+            result_name = "Invalid index or result_index structure."
+            return JsonResponse({'status': 'success', 'image_url': result_name})
+
     else:
         return JsonResponse({'status': 'error', 'errors': form.errors})
