@@ -22,7 +22,7 @@ def chat_with_gpt3(request):
 
 def generate_openai_response(user_input):
     # Set your OpenAI API key
-    openai.api_key = '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'
+    openai.api_key = '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'
 
     # Make a request to the OpenAI API
     response = openai.Completion.create(
