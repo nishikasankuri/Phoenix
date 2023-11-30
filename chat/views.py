@@ -12,9 +12,7 @@ def chat_with_gpt3(request):
         data = json.loads(request.body)
         value = data.get('data', '')
         value = value.strip()
-        print(value)
         openai_response = generate_openai_response(value)
-        print(openai_response)
         return JsonResponse({'response': openai_response})
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=400)

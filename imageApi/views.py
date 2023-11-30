@@ -38,14 +38,9 @@ def upload_image(request):
             crop_to_aspect_ratio=False,
         )
         image_name = os.path.basename(uploaded_image.image.name)
-        print(image_name)
+
         image_path = f"media/uploads/{image_name}"
         img = cv2.imread(image_path)
-        plt.imshow(img)
-        plt.title("Test Image")
-        plt.xticks([])
-        plt.yticks([])
-        plt.show()
 
         # Testing Model
         image = tf.keras.preprocessing.image.load_img(image_path, target_size=(64, 64))
@@ -53,8 +48,6 @@ def upload_image(request):
         input_arr = np.array([input_arr])  # converting single image to batch
         predictions = cnn.predict(input_arr)
         result_index = np.where(predictions[0] == max(predictions[0]))
-        print(result_index)
-        print(" It is  {} ".format(test_set.class_names[result_index[0][0]]))
         result_name = (" {} ".format(test_set.class_names[result_index[0][0]]))
 
         return JsonResponse({'status': 'success', 'image_url': result_name})
