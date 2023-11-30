@@ -52,6 +52,7 @@ def upload_image(request):
 
         # Identify the predicted class name
         result_index = np.argmax(predictions[0])
+        print(result_index)
 
         if 0 <= result_index < len(test_set.class_names):
             result_name = test_set.class_names[result_index]
