@@ -45,12 +45,15 @@ def upload_image(request):
         image_path = f"media/uploads/{image_name}"
         img = cv2.imread(image_path)
 
-        # Testing Model
         image = tf.keras.preprocessing.image.load_img(image_path, target_size=(64, 64))
         input_arr = tf.keras.preprocessing.image.img_to_array(image)
-        input_arr = np.array([input_arr])  # converting single image to batch
+        input_arr = np.array([input_arr])  # Convert single image to batch
         predictions = cnn.predict(input_arr)
-        result_index = np.where(predictions[0] == max(predictions[0]))
-        index_0 = result_index[0][0]
-        result_name = "{}".format(test_set.class_names[index_0])
+
+        # Identify the predicted class name
+        result_index = np.argmax(predictions[0])
+        result_name = test_set.class_names[result_index]
+
         return JsonResponse({'status': 'success', 'image_url': result_name})
+    else:
+        return JsonResponse({'status': 'error', 'errors': form.errors})
