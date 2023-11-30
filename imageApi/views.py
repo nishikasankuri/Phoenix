@@ -12,6 +12,7 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 import cv2
 import logging
+
 logger = logging.getLogger(__name__)
 
 
@@ -50,7 +51,6 @@ def upload_image(request):
         input_arr = np.array([input_arr])  # converting single image to batch
         predictions = cnn.predict(input_arr)
         result_index = np.where(predictions[0] == max(predictions[0]))
-        result_name = (" {} ".format(test_set.class_names[result_index[0][0]]))
 
         if result_index and result_index[0]:
             index_0 = result_index[0][0] if result_index[0] else None
@@ -60,9 +60,6 @@ def upload_image(request):
                 return JsonResponse({'status': 'success', 'image_url': result_name})
             else:
                 logger.error("Invalid index or result_index structure")
-                return JsonResponse({'status': 'success', 'image_url': result_name})
+
         else:
             logger.error("Invalid result_index structure")
-
-
-
