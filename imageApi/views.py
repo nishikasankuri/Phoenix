@@ -25,7 +25,7 @@ def upload_image(request):
         cnn = tf.keras.models.load_model("assets/trained_model3.h5")
 
         test_set = tf.keras.utils.image_dataset_from_directory(
-            'assets/Data/data1/test',
+            'assets/Data/data1/train',
             labels="inferred",
             label_mode="categorical",
             class_names=None,
